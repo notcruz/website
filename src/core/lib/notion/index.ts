@@ -15,6 +15,7 @@ export const getDatabase = async (): Promise<PageProperties[]> => {
         if (page.block[id].value.type === 'page')
             posts.push({
                 id,
+                status: getPageProperty("status", page.block[id].value, page),
                 title: getPageProperty("title", page.block[id].value, page),
                 tags: getPageProperty("tags", page.block[id].value, page),
                 description: getPageProperty("description", page.block[id].value, page),

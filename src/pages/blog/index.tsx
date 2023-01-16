@@ -6,14 +6,14 @@ import {useEffect, useState} from "react";
 import {Section} from "~/core/components";
 import {PageProperties} from "~/core/types";
 import {getDatabase} from "~/core/lib/notion";
-import {Layout} from "~/core/components/layout";
+import {Layout} from "~/core/components/Layout";
 
 
 const getTags = (posts: PageProperties[]) => Array.from(new Set(posts.flatMap((post) => post.tags ?? [])));
 
-type props = { posts: PageProperties[] }
+type PageProps = { posts: PageProperties[] }
 
-const Blog: NextPage<props> = ({posts}) => {
+const Blog: NextPage<PageProps> = ({posts}) => {
     const [search, setSearch] = useState<string>("");
     const [filteredPosts, setFilteredPosts] = useState<PageProperties[]>([...posts]);
     const [tags, filteredTags] = [getTags(posts), getTags(filteredPosts)];
@@ -53,30 +53,37 @@ const Blog: NextPage<props> = ({posts}) => {
                         );
                     })}
                 </div>
-                <ul className={"grid gap-4 sm:grid-cols-2 xl:grid-cols-3"}>
-                    {filteredPosts?.map((post) => {
-                        return (
-                            <li className={"rounded-md border border-gray-500 dark:border-gray-300 hover:scale-[1.03] duration-300"}
-                                key={post?.slug}
-                            >
-                                <a href={`/blog/${post?.slug}`}
-                                   className={"block rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300"}>
-                                    <figure className={"relative pointer-events-none"}>
-                                        <Image src={post?.cover ?? ""} width={750} height={375} loading={"lazy"}
-                                               className={"rounded-t-md"} decoding={"async"}
-                                               alt={`Cover image for post name ${post?.title}.`}
-                                        />
-                                    </figure>
-                                    <div className={"p-3"}>
-                                        <h4 className={"font-bold"}>{post?.title}</h4>
-                                        <p className={"text-sm text-gray-500 dark:text-gray-300"}>{post?.created}</p>
-                                        <p className={"mt-3 text-sm"}>{post?.description}</p>
-                                    </div>
-                                </a>
-                            </li>
-                        );
-                    })}
-                </ul>
+                {filteredPosts?.length === 0 && (
+                    <div className={"text-center"}>
+                        <p className={"font-bold text-xl mt-6"}>No results found.</p>
+                    </div>
+                )}
+                {filteredPosts?.length > 0 && (
+                    <ul className={"grid gap-4 sm:grid-cols-2 xl:grid-cols-3"}>
+                        {filteredPosts.map((post) => {
+                            return (
+                                <li className={"rounded-md border border-gray-500 dark:border-gray-300 hover:scale-[1.03] duration-300"}
+                                    key={post?.slug}
+                                >
+                                    <a href={`/blog/${post?.slug}`}
+                                       className={"block rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300"}>
+                                        <figure className={"relative pointer-events-none"}>
+                                            <Image src={post?.cover ?? ""} width={750} height={375} loading={"lazy"}
+                                                   className={"rounded-t-md"} decoding={"async"}
+                                                   alt={`Cover image for post name ${post?.title}.`}
+                                            />
+                                        </figure>
+                                        <div className={"p-3"}>
+                                            <h4 className={"font-bold"}>{post?.title}</h4>
+                                            <p className={"text-sm text-gray-500 dark:text-gray-300"}>{post?.created}</p>
+                                            <p className={"mt-3 text-sm"}>{post?.description}</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                )}
             </Section>
         </Layout>
     );

@@ -12,7 +12,7 @@ const NavItem = (props: props) => {
                 props.selected ? "" : "text-gray-300 dark:text-gray-700", props.className
             )}
             >
-                {props.text}
+                <code>{props.text}</code>
             </a>
         </Link>
     );

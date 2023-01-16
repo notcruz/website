@@ -8,7 +8,7 @@ import ReactDOMServer from "react-dom/server";
 import {NotionRenderer} from "react-notion-x";
 import {ExtendedRecordMap} from "notion-types";
 
-import {Layout} from "~/core/components/layout";
+import {Layout} from "~/core/components";
 import {getDatabase, notion} from "~/core/lib/notion";
 
 
@@ -63,7 +63,7 @@ const Slug: NextPage<props> = ({recordMap, post}) => {
     }, []);
 
     return (
-        <Layout className={"my-20"}>
+        <Layout className={"flex flex-col w-full max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-4xl min-h-screen my-20"}>
             <NotionRenderer hideBlockId={true} showTableOfContents={true}
                             components={components} disableHeader={true}
                             recordMap={recordMap} darkMode={systemTheme === "dark"} fullPage={true}
