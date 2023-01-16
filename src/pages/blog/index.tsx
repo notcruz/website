@@ -7,6 +7,7 @@ import {Section} from "~/core/components";
 import {PageProperties} from "~/core/types";
 import {getDatabase} from "~/core/lib/notion";
 import {Layout} from "~/core/components/Layout";
+import Link from "next/link";
 
 
 const getTags = (posts: PageProperties[]) => Array.from(new Set(posts.flatMap((post) => post.tags ?? [])));
@@ -65,20 +66,21 @@ const Blog: NextPage<PageProps> = ({posts}) => {
                                 <li className={"rounded-md border border-gray-500 dark:border-gray-300 hover:scale-[1.03] duration-300"}
                                     key={post?.slug}
                                 >
-                                    <a href={`/blog/${post?.slug}`}
-                                       className={"block rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300"}>
-                                        <figure className={"relative pointer-events-none"}>
-                                            <Image src={post?.cover ?? ""} width={750} height={375} loading={"lazy"}
-                                                   className={"rounded-t-md"} decoding={"async"}
-                                                   alt={`Cover image for post name ${post?.title}.`}
-                                            />
-                                        </figure>
-                                        <div className={"p-3"}>
-                                            <h4 className={"font-bold"}>{post?.title}</h4>
-                                            <p className={"text-sm text-gray-500 dark:text-gray-300"}>{post?.created}</p>
-                                            <p className={"mt-3 text-sm"}>{post?.description}</p>
-                                        </div>
-                                    </a>
+                                    <Link href={`/blog/${post?.slug}`}>
+                                        <a className={"block rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300"}>
+                                            <figure className={"relative pointer-events-none"}>
+                                                <Image src={post?.cover ?? ""} width={750} height={375} loading={"lazy"}
+                                                       className={"rounded-t-md"} decoding={"async"}
+                                                       alt={`Cover image for post name ${post?.title}.`}
+                                                />
+                                            </figure>
+                                            <div className={"p-3"}>
+                                                <h4 className={"font-bold"}>{post?.title}</h4>
+                                                <p className={"text-sm text-gray-500 dark:text-gray-300"}>{post?.created}</p>
+                                                <p className={"mt-3 text-sm"}>{post?.description}</p>
+                                            </div>
+                                        </a>
+                                    </Link>
                                 </li>
                             );
                         })}

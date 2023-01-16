@@ -6,6 +6,7 @@ import {getDatabase} from "~/core/lib/notion";
 import {HiOutlineExternalLink} from "react-icons/hi";
 import {AnimatePresence, motion} from "framer-motion";
 import React from "react";
+import Link from "next/link";
 
 type PageProps = { projects: GithubRepo[], posts: PageProperties[] }
 
@@ -13,15 +14,16 @@ const Home: NextPage<PageProps> = ({projects, posts}) => {
     return (
         <AnimatePresence mode="wait">
             <div className={"flex flex-col lg:flex-row w-screen"}>
-                <motion.div initial={{opacity: 0, scale: 0.95}} animate={{opacity: 1, scale: 1}}
-                            exit={{opacity: 0, scale: 0.95}} transition={{ease: "easeInOut", duration: 0.25, delay: 0.00}}
+                <motion.div initial={{opacity: 0, y: 25}} animate={{opacity: 1, y: 0}}
+                            exit={{opacity: 0, scale: 0.5}}
+                            transition={{ease: "easeInOut", duration: 0.5, delay: 0.25}}
                             className={"lg:fixed lg:max-w-md xl:max-w-xl mt-6 p-6 lg:p-0 lg:py-24 lg:pl-24 lg:pr-0"}
                 >
                     <h1 className="font-bold text-4xl md:text-5xl">Jonathan Cruz</h1>
                     <h2 className="font-semibold text-xl md:text-2xl mt-3">Software Engineer</h2>
-                    <motion.div initial={{opacity: 0, scale: 0.95}} animate={{opacity: 1, scale: 1}}
-                                exit={{opacity: 0, scale: 0.95}}
-                                transition={{ease: "easeInOut", duration: 0.25, delay: 0.15}}
+                    <motion.div initial={{opacity: 0, y: 25}} animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, scale: 0.5}}
+                                transition={{ease: "easeInOut", duration: 0.5, delay: 0.50}}
                                 className={"mt-6 space-y-3 text-sm leading-loose dark:text-gray-400"}
                     >
                         <p>
@@ -44,13 +46,15 @@ const Home: NextPage<PageProps> = ({projects, posts}) => {
                             On my spare time, I further my understanding on Quantum Computing, Artificial
                             Intelligence and
                             Neuroscience. I share what I learn on my {" "}
-                            <a className={"text-white underline"} href={"/blog"}>blog</a>
+                            <Link href={"/blog"}>
+                                <a className={"text-white underline"}>blog</a>
+                            </Link>
                             .
                         </p>
                     </motion.div>
-                    <motion.div initial={{opacity: 0, scale: 0.95}} animate={{opacity: 1, scale: 1}}
-                                exit={{opacity: 0, scale: 0.95}}
-                                transition={{ease: "easeInOut", duration: 0.25, delay: 0.30}}
+                    <motion.div initial={{opacity: 0, y: 25}} animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, scale: 0.5}}
+                                transition={{ease: "easeInOut", duration: 0.5, delay: 0.75}}
                                 className={"mt-6 md:mt-12 lg:mt-24 flex flex-wrap items-center gap-x-9"}>
                         <a className={"text-sm flex items-center"} href={"https://github.com/notcruz"}
                            rel={"noreferrer"}
@@ -73,8 +77,9 @@ const Home: NextPage<PageProps> = ({projects, posts}) => {
                         </a>
                     </motion.div>
                 </motion.div>
-                <motion.div initial={{opacity: 0, scale: 0.95}} animate={{opacity: 1, scale: 1}}
-                            exit={{opacity: 0, scale: 0.95}} transition={{ease: "easeInOut", duration: 0.25, delay: 0.45}}
+                <motion.div initial={{opacity: 0, y: 25}} animate={{opacity: 1, y: 0}}
+                            exit={{opacity: 0, scale: 0.5}}
+                            transition={{ease: "easeInOut", duration: 0.5, delay: 1.00}}
                             className={"lg:absolute w-full lg:max-w-xl xl:max-w-3xl right-0 p-6 lg:p-0 lg:py-24 lg:pr-24 xl:pl-24 space-y-12"}
                 >
                     <div className={"space-y-3"}>
