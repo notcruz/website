@@ -13,7 +13,7 @@ const Container = (props: ComponentProps) => {
     return (
         <div className={"flex"}>
             <div className={twMerge("border-2", props.color)}/>
-            <div className={"flex-1 bg-gray-800 p-6 md:py-6 md:px-9"}>
+            <div className={"flex-1 bg-[#DDDDDD] dark:bg-gray-800 p-6 md:py-6 md:px-9"}>
                 <div className="text-xs tracking-widest uppercase">
                     <div className={"flex justify-between"}>
                         <p className={"underline underline-offset-4"}>{props.header?.one}</p>
